@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:interactive_learn/pages/tabs/home_page.dart';
+import 'package:interactive_learn/pages/tab_widget_tree.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -9,6 +9,12 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
+  String email = '';
+  String password = '';
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -23,6 +29,7 @@ class _LoginFormState extends State<LoginForm> {
               borderRadius: BorderRadius.circular(100),
             ),
           ),
+          controller: emailController,
         ),
         TextField(
           decoration: InputDecoration(
@@ -31,13 +38,15 @@ class _LoginFormState extends State<LoginForm> {
               borderRadius: BorderRadius.circular(100),
             ),
           ),
+          controller: passwordController,
+          obscureText: true,
         ),
 
         ElevatedButton(
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HomePage()),
+              MaterialPageRoute(builder: (context) => TabWidgetTree()),
             );
           },
           child: Text('Login'),
@@ -67,6 +76,17 @@ class _LoginFormState extends State<LoginForm> {
             ),
           ],
         ),
+        ElevatedButton(
+          onPressed: () {
+            setState(() {
+              email = emailController.text;
+              password = passwordController.text;
+            });
+          },
+          child: Text("Show Form Data"),
+        ),
+        Text("Email: $email"),
+        Text("Password: $password"),
       ],
     );
   }
