@@ -21,7 +21,7 @@ class _LoginFormState extends State<LoginForm> {
       mainAxisAlignment: MainAxisAlignment.center,
       spacing: 8,
       children: [
-        Text('Login Form', style: Theme.of(context).textTheme.headlineMedium!),
+        Text('Login Form', style: Theme.of(context).textTheme.headlineMedium),
         TextField(
           decoration: InputDecoration(
             labelText: 'Email',

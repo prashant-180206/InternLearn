@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
             'Welcome Prashant',
             style: Theme.of(context).textTheme.headlineSmall!,
           ),
-          subtitle: Text("Keep Learning , Keep Growing"),
+          subtitle: Text("Keep Learning , Keep Growing Further"),
         ),
         Container(
           padding: EdgeInsets.all(10),

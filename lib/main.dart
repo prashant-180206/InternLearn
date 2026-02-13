@@ -11,38 +11,25 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    ColorScheme colors = ColorScheme.fromSeed(
+      seedColor: Colors.lightBlueAccent,
+    );
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Intern Learn',
       theme: ThemeData(
+        useMaterial3: true,
         appBarTheme: AppBarTheme(
-          backgroundColor: const Color.fromARGB(169, 79, 58, 183),
+          backgroundColor: colors.primary.withAlpha(150),
         ),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
-        primaryTextTheme: TextTheme(
-          headlineMedium: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-          headlineLarge: TextStyle(
-            color: Colors.white,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-          headlineSmall: TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        colorScheme: colors,
+
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color.fromARGB(163, 104, 58, 183),
             foregroundColor: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+            backgroundColor: colors.primary.withAlpha(120),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(100),
+              borderRadius: BorderRadiusGeometry.circular(100),
             ),
           ),
         ),

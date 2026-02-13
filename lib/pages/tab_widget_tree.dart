@@ -21,7 +21,7 @@ class _TabWidgetTreeState extends State<TabWidgetTree> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Tab Widget Tree')),
+      appBar: AppBar(title: Text('Tab Widget Tree')),
       body: SingleChildScrollView(
         child: _widgets[_selectedIndex],
       ),
