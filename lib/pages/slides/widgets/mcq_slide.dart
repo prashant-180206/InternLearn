@@ -149,7 +149,7 @@ class McqSlideWidget extends HookWidget {
                       Expanded(
                         child: Text(text, style: theme.textTheme.bodyLarge),
                       ),
-                      if (trail != null) trail,
+                      ?trail,
                     ],
                   ),
                 ),

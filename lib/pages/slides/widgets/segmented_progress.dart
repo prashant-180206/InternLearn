@@ -1,0 +1,46 @@
+
+
+import 'package:flutter/material.dart';
+
+class SegmentedProgress extends StatelessWidget {
+  final int total;
+  final int current;
+  final Set<int> completed;
+
+  const SegmentedProgress({
+    super.key,
+    required this.total,
+    required this.current,
+    required this.completed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 6),
+      child: Row(
+        children: List.generate(total, (i) {
+          final isDone = completed.contains(i) || i < current;
+          final isCurrent = i == current;
+          final color = isDone
+              ? Colors.white
+              : isCurrent
+                  ? Colors.white.withValues(alpha: 0.55)
+                  : Colors.white.withValues(alpha: 0.25);
+
+          return Expanded(
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              height: 5,
+              margin: const EdgeInsets.symmetric(horizontal: 2),
+              decoration: BoxDecoration(
+                color: color,
+                borderRadius: BorderRadius.circular(3),
+              ),
+            ),
+          );
+        }),
+      ),
+    );
+  }
+}
