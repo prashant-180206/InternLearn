@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interactive_learn/core/models/subject.dart';
-import 'package:interactive_learn/pages/content/chapters_page.dart';
+import 'package:interactive_learn/screens/content/chapters_screen.dart';
 
 class SubjectCard extends StatelessWidget {
   final Subject subject;

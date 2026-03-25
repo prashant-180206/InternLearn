@@ -1,44 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:interactive_learn/core/models/chapter.dart';
 import 'package:interactive_learn/core/models/subject.dart';
 import 'package:interactive_learn/core/providers/content_provider.dart';
-import 'package:interactive_learn/pages/content/widgets/topic_card.dart';
+import 'package:interactive_learn/screens/content/widgets/chapter_card.dart';
 
-class TopicsPage extends ConsumerWidget {
+class ChaptersPage extends ConsumerWidget {
   final Subject subject;
-  final Chapter chapter;
-  const TopicsPage({super.key, required this.subject, required this.chapter});
+  const ChaptersPage({super.key, required this.subject});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final topicsAsync = ref.watch(topicProvider(chapter.id!));
+    final chaptersAsync = ref.watch(chapterProvider(subject.id));
     return Scaffold(
       appBar: AppBar(
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(chapter.name),
+            Text(subject.name),
             Text(
-              subject.name,
+              'Chapters',
               style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.white70),
             ),
           ],
         ),
       ),
-      body: topicsAsync.when(
-        data: (topics) {
-          if (topics.isEmpty) {
-            return const Center(child: Text('No topics found.'));
+      body: chaptersAsync.when(
+        data: (chapters) {
+          if (chapters.isEmpty) {
+            return const Center(child: Text('No chapters found.'));
           }
           return ListView.separated(
             padding: const EdgeInsets.all(16),
-            itemCount: topics.length,
+            itemCount: chapters.length,
             separatorBuilder: (_, _) => const SizedBox(height: 8),
-            itemBuilder: (context, index) => TopicCard(
+            itemBuilder: (context, index) => ChapterCard(
               subject: subject,
-              chapter: chapter,
-              topic: topics[index],
+              chapter: chapters[index],
               index: index,
             ),
           );

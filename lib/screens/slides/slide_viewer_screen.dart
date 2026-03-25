@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:interactive_learn/core/providers/slide_provider.dart';
-import 'package:interactive_learn/pages/slides/widgets/slide_viewer_body.dart';
+import 'package:interactive_learn/screens/slides/widgets/slide_viewer_body.dart';
 
 // ── Sealed union: one entry per slide item sorted by order ───────────────────
 
 
 // ── Public page ───────────────────────────────────────────────────────────────
 
-class SlideViewerPage extends HookConsumerWidget {
+class SlideViewerScreen extends HookConsumerWidget {
   final int subtopicId;
   final String subtopicTitle;
 
-  const SlideViewerPage({
+  const SlideViewerScreen({
     super.key,
     required this.subtopicId,
     required this.subtopicTitle,

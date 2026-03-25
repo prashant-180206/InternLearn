@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:interactive_learn/core/providers/auth_provider.dart';
 import 'package:interactive_learn/core/providers/content_provider.dart';
-import 'package:interactive_learn/pages/content/subjects_page.dart';
-import 'package:interactive_learn/pages/tabs/widgets/subject_grid.dart';
+import 'package:interactive_learn/screens/content/subjects_screen.dart';
+import 'package:interactive_learn/screens/tabs/widgets/subject_grid.dart';
 
-class HomePage extends ConsumerWidget {
-  const HomePage({super.key});
+class HomeScreen extends ConsumerWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -64,7 +64,7 @@ class HomePage extends ConsumerWidget {
               TextButton(
                 onPressed: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => const SubjectsPage()),
+                  MaterialPageRoute(builder: (_) => const SubjectsScreen()),
                 ),
                 child: const Text('See All'),
               ),
