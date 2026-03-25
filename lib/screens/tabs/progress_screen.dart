@@ -1,11 +1,12 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-//  DATA MODEL
 class CourseProgress {
   final String name;
   final Color color;
-  final List<FlSpot> weeklyData; // x = week, y = % complete
+  final List<FlSpot> weeklyData; 
   final int totalLessons;
   final int completedLessons;
   final String category;
@@ -268,7 +269,7 @@ class _ProgressScreenState extends State<ProgressScreen>
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: _courses.length,
-            separatorBuilder: (_, __) => const SizedBox(width: 8),
+            separatorBuilder: (_, _) => const SizedBox(width: 8),
             itemBuilder: (context, i) {
               final isSelected = i == _selectedCourseIndex;
               final c = _courses[i];

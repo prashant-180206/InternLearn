@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:interactive_learn/core/models/chapter.dart';
 import 'package:interactive_learn/core/models/subject.dart';
-import 'package:interactive_learn/core/models/topic.dart';
-import 'package:interactive_learn/pages/content/subtopics_page.dart';
+import 'package:interactive_learn/screens/content/topics_screen.dart';
 
-class TopicCard extends StatelessWidget {
+class ChapterCard extends StatelessWidget {
   final Subject subject;
   final Chapter chapter;
-  final Topic topic;
   final int index;
-  const TopicCard({
+  const ChapterCard({
     super.key,
     required this.subject,
     required this.chapter,
-    required this.topic,
     required this.index,
   });
 
@@ -25,27 +22,28 @@ class TopicCard extends StatelessWidget {
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         leading: CircleAvatar(
-          backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
           child: Text(
-            '${index + 1}',
+            chapter.chapterNumber,
             style: TextStyle(
-              color: Theme.of(context).colorScheme.onSecondaryContainer,
+              color: Theme.of(context).colorScheme.onPrimaryContainer,
               fontWeight: FontWeight.bold,
+              fontSize: 12,
             ),
           ),
         ),
         title: Text(
-          topic.title,
+          chapter.name,
           style: Theme.of(
             context,
           ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
         ),
+        subtitle: Text('Chapter ${chapter.chapterNumber}'),
         trailing: const Icon(Icons.chevron_right),
         onTap: () => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) =>
-                SubtopicsPage(subject: subject, chapter: chapter, topic: topic),
+            builder: (_) => TopicsScreen(subject: subject, chapter: chapter),
           ),
         ),
       ),

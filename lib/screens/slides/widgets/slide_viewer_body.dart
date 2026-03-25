@@ -5,10 +5,10 @@ import 'package:interactive_learn/core/models/slide_match.dart';
 import 'package:interactive_learn/core/models/slide_mcq.dart';
 import 'package:interactive_learn/core/providers/slide_provider.dart';
 import 'package:interactive_learn/core/singleton.dart';
-import 'package:interactive_learn/pages/slides/widgets/content_slide.dart';
-import 'package:interactive_learn/pages/slides/widgets/match_slide.dart';
-import 'package:interactive_learn/pages/slides/widgets/mcq_slide.dart';
-import 'package:interactive_learn/pages/slides/widgets/segmented_progress.dart';
+import 'package:interactive_learn/screens/slides/widgets/content_slide.dart';
+import 'package:interactive_learn/screens/slides/widgets/match_slide.dart';
+import 'package:interactive_learn/screens/slides/widgets/mcq_slide.dart';
+import 'package:interactive_learn/screens/slides/widgets/segmented_progress.dart';
 
 sealed class _SlideEntry {
   int get order;

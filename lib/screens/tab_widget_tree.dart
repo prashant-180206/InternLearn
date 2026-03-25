@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:interactive_learn/pages/tabs/home_page.dart';
-import 'package:interactive_learn/pages/tabs/profile_page.dart';
-import 'package:interactive_learn/pages/tabs/search_page.dart';
-import 'package:interactive_learn/screens/progress_screen.dart';
+import 'package:interactive_learn/screens/tabs/home_screen.dart';
+import 'package:interactive_learn/screens/tabs/profile_screen.dart';
+import 'package:interactive_learn/screens/tabs/search_screen.dart';
+import 'package:interactive_learn/screens/tabs/progress_screen.dart';
 
 class TabWidgetTree extends HookWidget {
   const TabWidgetTree({super.key});
 
   static const _pages = [
-    HomePage(),
-    SearchPage(),
-    ProfilePage(),
+    HomeScreen(),
+    SearchScreen(),
+    ProfileScreen(),
     ProgressScreen(),
   ];
 

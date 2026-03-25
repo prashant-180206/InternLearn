@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:interactive_learn/core/providers/content_provider.dart';
-import 'package:interactive_learn/pages/content/widgets/subject_card.dart';
+import 'package:interactive_learn/screens/content/widgets/subject_card.dart';
 
-class SubjectsPage extends ConsumerWidget {
-  const SubjectsPage({super.key});
+class SubjectsScreen extends ConsumerWidget {
+  const SubjectsScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

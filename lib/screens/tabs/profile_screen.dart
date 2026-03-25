@@ -4,8 +4,8 @@ import 'package:interactive_learn/core/providers/auth_provider.dart';
 import 'package:interactive_learn/core/providers/theme_provider.dart';
 import 'package:interactive_learn/core/singleton.dart';
 
-class ProfilePage extends ConsumerWidget {
-  const ProfilePage({super.key});
+class ProfileScreen extends ConsumerWidget {
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

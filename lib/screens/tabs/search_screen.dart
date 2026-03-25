@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:interactive_learn/core/providers/content_provider.dart';
-import 'package:interactive_learn/pages/content/chapters_page.dart';
+import 'package:interactive_learn/screens/content/chapters_screen.dart';
 
-class SearchPage extends HookConsumerWidget {
-  const SearchPage({super.key});
+class SearchScreen extends HookConsumerWidget {
+  const SearchScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -4,8 +4,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:interactive_learn/core/providers/auth_provider.dart';
 import 'package:interactive_learn/core/providers/theme_provider.dart';
 import 'package:interactive_learn/core/singleton.dart';
-import 'package:interactive_learn/pages/auth/login.dart';
-import 'package:interactive_learn/pages/tab_widget_tree.dart';
+import 'package:interactive_learn/screens/auth/login.dart';
+import 'package:interactive_learn/screens/tab_widget_tree.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 

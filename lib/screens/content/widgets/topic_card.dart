@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:interactive_learn/core/models/chapter.dart';
 import 'package:interactive_learn/core/models/subject.dart';
-import 'package:interactive_learn/pages/content/topics_page.dart';
+import 'package:interactive_learn/core/models/topic.dart';
+import 'package:interactive_learn/screens/content/subtopics_screen.dart';
 
-class ChapterCard extends StatelessWidget {
+class TopicCard extends StatelessWidget {
   final Subject subject;
   final Chapter chapter;
+  final Topic topic;
   final int index;
-  const ChapterCard({
+  const TopicCard({
     super.key,
     required this.subject,
     required this.chapter,
+    required this.topic,
     required this.index,
   });
 
@@ -22,28 +25,27 @@ class ChapterCard extends StatelessWidget {
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         leading: CircleAvatar(
-          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+          backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
           child: Text(
-            chapter.chapterNumber,
+            '${index + 1}',
             style: TextStyle(
-              color: Theme.of(context).colorScheme.onPrimaryContainer,
+              color: Theme.of(context).colorScheme.onSecondaryContainer,
               fontWeight: FontWeight.bold,
-              fontSize: 12,
             ),
           ),
         ),
         title: Text(
-          chapter.name,
+          topic.title,
           style: Theme.of(
             context,
           ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
         ),
-        subtitle: Text('Chapter ${chapter.chapterNumber}'),
         trailing: const Icon(Icons.chevron_right),
         onTap: () => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => TopicsPage(subject: subject, chapter: chapter),
+            builder: (_) =>
+                SubtopicsScreen(subject: subject, chapter: chapter, topic: topic),
           ),
         ),
       ),

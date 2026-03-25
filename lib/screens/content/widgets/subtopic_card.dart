@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interactive_learn/core/models/subtopic.dart';
-import 'package:interactive_learn/pages/slides/slide_viewer_page.dart';
+import 'package:interactive_learn/screens/slides/slide_viewer_screen.dart';
 
 class SubtopicCard extends StatelessWidget {
   final Subtopic subtopic;
@@ -63,7 +63,7 @@ class SubtopicCard extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (_) => SlideViewerPage(
+              builder: (_) => SlideViewerScreen(
                 subtopicId: subtopic.id,
                 subtopicTitle: subtopic.title,
               ),
