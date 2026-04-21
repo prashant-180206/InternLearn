@@ -24,7 +24,7 @@ class _ThemeSettingsPageState extends State<ThemeSettingsPage> {
         padding: const EdgeInsets.all(20),
         children: [
           Text(
-            'Choose how Intern Learn looks. This is a preview only — your choice is not saved yet.',
+            'Choose how Nexus looks. This is a preview only — your choice is not saved yet.',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: scheme.onSurfaceVariant,
                 ),

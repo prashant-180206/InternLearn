@@ -33,7 +33,7 @@ class MyApp extends ConsumerWidget {
     );
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Intern Learn',
+      title: 'Nexus',
       theme: ThemeData(
         useMaterial3: true,
         appBarTheme: AppBarTheme(

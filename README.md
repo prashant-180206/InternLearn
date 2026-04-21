@@ -1,6 +1,6 @@
-# Interactive Learn
+# Nexus
 
-Interactive Learn is a Flutter + Supabase app for technical learning (DSA and similar subjects).
+Nexus is a Flutter + Supabase app for technical learning (DSA and similar subjects).
 
 The app uses a content hierarchy:
 
@@ -120,7 +120,7 @@ App layers follow this pattern:
 ## Folder Structure
 
 ```text
-interactive_learn/
+nexus/
 
 	assets/
 		images/

@@ -57,6 +57,19 @@ dev_dependencies:
   freezed: ^3.2.5
   json_serializable: ^6.13.0
   riverpod_generator: ^4.0.3
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.4.0
+
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: "assets/images/splash_logo.png"
+  android_12:
+    image: "assets/images/splash_logo.png"
+    color: "#FFFFFF"
+  fullscreen: true
+  web: true
+  web_image_mode: center
+
 
 
 # For information on the generic Dart part of this file, see the
