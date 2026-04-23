@@ -19,7 +19,6 @@ class HomeScreen extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // ── Greeting ──────────────────────────────────────────────
           Row(
             children: [
               CircleAvatar(
@@ -57,10 +56,8 @@ class HomeScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 24),
 
-          // ── Subjects header ───────────────────────────────────────
           Text(
             'Subjects',
-            // textWidthBasis: ,
             textAlign: TextAlign.left,
             style: Theme.of(
               context,
@@ -69,7 +66,6 @@ class HomeScreen extends ConsumerWidget {
 
           const SizedBox(height: 8),
 
-          // ── Subjects grid ─────────────────────────────────────────
           subjectsAsync.when(
             data: (subjects) => subjects.isEmpty
                 ? const Padding(
