@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nexus/core/routes/app_routes.dart';
@@ -7,45 +8,56 @@ import 'package:nexus/features/profile/data/riverpod/user_profile_provider.dart'
 import 'package:nexus/features/auth/services/auth_service.dart';
 import 'package:random_avatar/random_avatar.dart';
 
-class EditProfileScreen extends ConsumerStatefulWidget {
+class EditProfileScreen extends HookConsumerWidget {
   const EditProfileScreen({super.key});
 
   @override
-  ConsumerState<EditProfileScreen> createState() => _EditProfileScreenState();
-}
-
-class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final _nameController = TextEditingController();
-  bool _isSaving = false;
-  String? _selectedAvatarSeed;
-
-  @override
-  void dispose() {
-    _nameController.dispose();
-    super.dispose();
-  }
-
-  Future<void> _saveProfile() async {
-    if (!_formKey.currentState!.validate()) return;
-
-    setState(() => _isSaving = true);
-    try {
-      await AuthService.updateProfile(name: _nameController.text);
-      if (!mounted) return;
-      ref.invalidate(userProfileProvider);
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Profile updated')));
-    } finally {
-      if (mounted) setState(() => _isSaving = false);
-      if (mounted) context.pop();
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final formKey = useMemoized(() => GlobalKey<FormState>());
+    final nameController = useTextEditingController();
+    final isSaving = useState(false);
+    final selectedAvatarSeed = useState<String?>(null);
     final profileAsync = ref.watch(userProfileProvider);
+    final profile = profileAsync.asData?.value;
+
+    useEffect(() {
+      if (profile != null) {
+        if (nameController.text.isEmpty) {
+          nameController.text = profile.name;
+        }
+        selectedAvatarSeed.value ??= profile.avatarSeed;
+      }
+      return null;
+    }, [profile?.name, profile?.avatarSeed]);
+
+    final avatarSeed = (selectedAvatarSeed.value?.trim().isNotEmpty ?? false)
+        ? selectedAvatarSeed.value!
+        : 'user_avatar';
+
+    Future<void> saveProfile() async {
+      if (!formKey.currentState!.validate()) return;
+
+      isSaving.value = true;
+      try {
+        final avatarSeedToSave =
+            (selectedAvatarSeed.value?.trim().isNotEmpty ?? false)
+            ? selectedAvatarSeed.value
+            : profile?.avatarSeed;
+
+        await AuthService.updateProfile(
+          name: nameController.text,
+          avatarSeed: avatarSeedToSave,
+        );
+        if (!context.mounted) return;
+        ref.invalidate(userProfileProvider);
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('Profile updated')));
+      } finally {
+        if (context.mounted) isSaving.value = false;
+        if (context.mounted) context.pop();
+      }
+    }
 
     return Scaffold(
       appBar: AppBar(title: const Text('Edit Profile')),
@@ -57,19 +69,10 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
             return const Center(child: Text('No profile found'));
           }
 
-          if (_nameController.text.isEmpty) {
-            _nameController.text = profile.name;
-          }
-
-          _selectedAvatarSeed ??= profile.avatarSeed;
-          final avatarSeed = (_selectedAvatarSeed?.trim().isNotEmpty ?? false)
-              ? _selectedAvatarSeed!
-              : 'user_avatar';
-
           return SingleChildScrollView(
             padding: const EdgeInsets.all(16),
             child: Form(
-              key: _formKey,
+              key: formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -108,7 +111,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                   ),
                   const SizedBox(height: 12),
                   TextFormField(
-                    controller: _nameController,
+                    controller: nameController,
                     decoration: const InputDecoration(
                       labelText: 'Display Name',
                       border: OutlineInputBorder(),
@@ -146,12 +149,12 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                       ),
                       onTap: () async {
                         final selectedSeed = await AvatarPickerRoute(
-                          currentSeed: profile.avatarSeed,
+                          currentSeed: avatarSeed,
                         ).push<String>(context);
-                        if (!mounted) return;
+                        if (!context.mounted) return;
                         if (selectedSeed != null &&
                             selectedSeed.trim().isNotEmpty) {
-                          setState(() => _selectedAvatarSeed = selectedSeed);
+                          selectedAvatarSeed.value = selectedSeed;
                           if (context.mounted) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
@@ -170,8 +173,8 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                   SizedBox(
                     width: double.infinity,
                     child: FilledButton.icon(
-                      onPressed: _isSaving ? null : _saveProfile,
-                      icon: _isSaving
+                      onPressed: isSaving.value ? null : saveProfile,
+                      icon: isSaving.value
                           ? const SizedBox(
                               width: 16,
                               height: 16,
