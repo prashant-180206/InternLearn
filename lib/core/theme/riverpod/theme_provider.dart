@@ -8,6 +8,7 @@ part 'theme_provider.g.dart';
 
 @riverpod
 class AppTheme extends _$AppTheme {
+  
   static const _themeModeCacheKey = 'app_theme_mode';
 
   @override

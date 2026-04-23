@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:nexus/core/routes/app_routes.dart';
 import 'package:nexus/features/auth/services/auth_service.dart';
 import 'package:nexus/core/singleton.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -35,15 +36,13 @@ class SignupForm extends HookConsumerWidget {
 
       try {
         await AuthService.signUp(
-          AccountFilledDetails(
-            name: name,
-            email: email,
-            password: password,
-          ),
+          AccountFilledDetails(name: name, email: email, password: password),
         );
 
-        successMessage.value =
-            'Account created! Login To Continue.';
+        successMessage.value = 'Account created! Login To Continue.';
+        if (context.mounted) {
+          LoginRoute().go(context);
+        }
       } on AuthException catch (e) {
         errorMessage.value = e.message;
       } catch (e) {
@@ -120,8 +119,7 @@ class SignupForm extends HookConsumerWidget {
                       ? Icons.visibility_off_outlined
                       : Icons.visibility_outlined,
                 ),
-                onPressed: () =>
-                    obscurePassword.value = !obscurePassword.value,
+                onPressed: () => obscurePassword.value = !obscurePassword.value,
               ),
             ),
             validator: (value) {
